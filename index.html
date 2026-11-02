@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kelley KPI Prep Workbook | HelloCollege</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F2F1F4;
+  --surface:#FFFFFF;
+  --tint:#ECE6F5;
+  --ink:#211F27;
+  --muted:#5E5A66;
+  --line:#D9D6DF;
+  --plum:#4B2A7B;
+  --plum-strong:#3A1F61;
+  --violet:#6E4BA8;
+  --on-plum:#FFFFFF;
+  --check:#4B2A7B;
+  --focus:#7E5BB5;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#17151C;--surface:#211E28;--tint:#2C2538;--ink:#EEECF2;--muted:#ABA6B5;--line:#3A3544;
+    --plum:#B79BE6;--plum-strong:#CDB8F0;--violet:#B79BE6;--on-plum:#1B1424;--check:#B79BE6;--focus:#CDB8F0;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#17151C;--surface:#211E28;--tint:#2C2538;--ink:#EEECF2;--muted:#ABA6B5;--line:#3A3544;
+  --plum:#B79BE6;--plum-strong:#CDB8F0;--violet:#B79BE6;--on-plum:#1B1424;--check:#B79BE6;--focus:#CDB8F0;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 1rem);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.6}
+h1,h2,h3{font-family:"Bricolage Grotesque","Figtree",system-ui,sans-serif;line-height:1.1;margin:0;letter-spacing:-0.01em}
+p{margin:0 0 1em}
+a{color:var(--plum)}
+a:hover{color:var(--plum-strong)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+img,svg{max-width:100%}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+
+/* Hero */
+.hero{padding:3.5rem 0 3rem}
+.brand{font-weight:700;color:var(--plum);font-size:.95rem;margin-bottom:2.5rem;display:flex;gap:.5rem;align-items:center}
+.brand .dot{width:.7rem;height:.7rem;border-radius:50%;background:var(--plum)}
+.stack{display:grid;gap:.15rem;margin-bottom:1.75rem}
+.stack span{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2.6rem,8vw,5.75rem);line-height:.95;letter-spacing:-0.03em}
+.stack span:nth-child(1){color:var(--ink)}
+.stack span:nth-child(2){color:var(--violet)}
+.stack span:nth-child(3){color:var(--plum)}
+.lede{max-width:36rem;font-size:1.2rem;color:var(--muted)}
+.lede strong{color:var(--ink)}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:220px 1fr;gap:3rem;padding-bottom:4rem}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 1.5rem);align-self:start}
+.toc ol{list-style:none;margin:0;padding:0;counter-reset:s}
+.toc li{counter-increment:s}
+.toc a{display:flex;gap:.75rem;align-items:baseline;padding:.55rem 0;text-decoration:none;color:var(--muted);font-weight:600;border-bottom:1px solid var(--line)}
+.toc a::before{content:counter(s);font-family:"Bricolage Grotesque",sans-serif;color:var(--plum);font-weight:700;min-width:1rem}
+.toc a:hover,.toc a[aria-current="true"]{color:var(--ink)}
+.progress{margin-top:1.5rem;font-size:.9rem;color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-top:.4rem}
+.bar i{display:block;height:100%;width:0;background:var(--plum);transition:width .3s ease}
+
+main section{padding:2.5rem 0;border-top:2px solid var(--ink)}
+main section:first-child{border-top:none;padding-top:0}
+.sec-head{display:flex;gap:1rem;align-items:baseline;margin-bottom:1.25rem}
+.sec-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:2.5rem;color:var(--plum);line-height:1}
+h2{font-size:clamp(1.7rem,3.5vw,2.25rem)}
+h3{font-size:1.25rem;margin-bottom:.4rem}
+.prose{max-width:42rem}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:1.5rem 0}
+.facts div{background:var(--surface);padding:1.1rem 1.2rem}
+.facts b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.6rem;color:var(--plum);line-height:1.1;margin-bottom:.3rem}
+.facts span{color:var(--muted);font-size:.95rem}
+
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0 0;padding:0;list-style:none}
+.areas li{padding:1rem 0 0;border-top:3px solid var(--plum)}
+.areas p{color:var(--muted);margin:0;font-size:.98rem}
+
+.note{background:var(--tint);border-radius:12px;padding:1rem 1.2rem;font-size:.98rem;max-width:42rem}
+.note strong{color:var(--plum-strong)}
+
+/* Timeline */
+.timeline{list-style:none;margin:1.5rem 0;padding:0;position:relative;max-width:42rem}
+.timeline::before{content:"";position:absolute;left:5.6rem;top:.6rem;bottom:.6rem;width:2px;background:var(--line)}
+.timeline li{display:grid;grid-template-columns:5rem 1fr;gap:1.4rem;padding:.7rem 0;position:relative}
+.timeline li::after{content:"";position:absolute;left:5.25rem;top:1.15rem;width:.85rem;height:.85rem;border-radius:50%;background:var(--surface);border:2px solid var(--muted)}
+.timeline li.key::after{background:var(--plum);border-color:var(--plum)}
+.when{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.05rem;text-align:right;padding-top:.15rem}
+.timeline li.key .when{color:var(--plum)}
+.what b{display:block}
+.what span{color:var(--muted);font-size:.97rem}
+
+/* Reflection */
+.prompt{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.4rem;margin-bottom:1rem}
+.prompt label{display:block;font-weight:600;margin-bottom:.3rem}
+.prompt .hint{color:var(--muted);font-size:.95rem;margin-bottom:.8rem}
+.tag{display:inline-block;font-size:.82rem;font-weight:700;color:var(--plum);background:var(--tint);border-radius:99px;padding:.15rem .65rem;margin-bottom:.7rem}
+textarea{width:100%;min-height:7.5rem;resize:vertical;font:inherit;font-size:1rem;color:var(--ink);background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem;line-height:1.5}
+textarea:focus{outline:2px solid var(--focus);outline-offset:1px;border-color:transparent}
+.saved{font-size:.85rem;color:var(--muted);margin-top:.4rem;min-height:1.2em}
+.tools{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem;align-items:center}
+button{font:inherit;font-weight:600;font-size:1rem;cursor:pointer;border-radius:10px;padding:.7rem 1.15rem;min-height:44px;border:2px solid var(--plum)}
+.btn-primary{background:var(--plum);color:var(--on-plum)}
+.btn-primary:hover{background:var(--plum-strong);border-color:var(--plum-strong)}
+.btn-ghost{background:transparent;color:var(--plum)}
+.btn-ghost:hover{background:var(--tint)}
+.status{font-size:.95rem;color:var(--muted)}
+
+.dos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:1.5rem}
+.dos ul{margin:.3rem 0 0;padding-left:1.1rem}
+.dos li{margin-bottom:.5rem}
+
+/* Checklist */
+.checklist{list-style:none;margin:1rem 0;padding:0;max-width:42rem}
+.checklist li{border-bottom:1px solid var(--line)}
+.checklist label{display:flex;gap:.9rem;align-items:flex-start;padding:.9rem 0;cursor:pointer;min-height:44px}
+.checklist input{appearance:none;-webkit-appearance:none;flex:none;width:1.5rem;height:1.5rem;border:2px solid var(--muted);border-radius:6px;margin:.1rem 0 0;display:grid;place-content:center;background:var(--surface);cursor:pointer}
+.checklist input::before{content:"";width:.75rem;height:.4rem;border-left:3px solid var(--on-plum);border-bottom:3px solid var(--on-plum);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.checklist input:checked{background:var(--check);border-color:var(--check)}
+.checklist input:checked::before{opacity:1}
+.checklist input:checked + span b{text-decoration:line-through;text-decoration-thickness:2px;color:var(--muted)}
+.checklist span b{display:block;font-weight:600}
+.checklist span small{color:var(--muted);font-size:.93rem}
+
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1rem}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.2rem}
+.path p{color:var(--muted);margin:0;font-size:.98rem}
+
+details{border-bottom:1px solid var(--line);max-width:42rem}
+summary{cursor:pointer;font-weight:600;padding:1rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:"Bricolage Grotesque",sans-serif;font-size:1.4rem;line-height:1;color:var(--plum)}
+details[open] summary::after{content:"\2212"}
+details p{color:var(--muted);margin-top:-.25rem}
+
+footer{border-top:1px solid var(--line);padding:2rem 0 3rem;color:var(--muted);font-size:.93rem}
+footer p{max-width:42rem}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:1fr;gap:0}
+  .toc{position:static;margin-bottom:2rem}
+  .toc ol{display:flex;flex-wrap:wrap;gap:.5rem}
+  .toc a{border:1px solid var(--line);border-radius:99px;padding:.4rem .85rem;background:var(--surface)}
+  .timeline::before{left:4.6rem}
+  .timeline li{grid-template-columns:4rem 1fr}
+  .timeline li::after{left:4.25rem}
+}
+@media print{
+  .toc,.tools,.progress{display:none}
+  .layout{grid-template-columns:1fr}
+  body{background:#fff;color:#000}
+  textarea{border:1px solid #999;background:#fff;min-height:6rem}
+  section{break-inside:avoid-page}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap hero">
+  <div class="brand"><span class="dot" aria-hidden="true"></span>HelloCollege Advising Resource</div>
+  <h1 class="stack" aria-label="20 questions. 20 minutes. No right answers.">
+    <span>20 questions.</span>
+    <span>20 minutes.</span>
+    <span>No right answers.</span>
+  </h1>
+  <p class="lede">Your prep workbook for the <strong>Kelley Prospect Inventory (KPI)</strong>, the questionnaire every student must complete to be considered for direct admission to Indiana University’s Kelley School of Business. Your notes save in this browser as you type.</p>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="Workbook sections">
+    <ol>
+      <li><a href="#what">What the KPI is</a></li>
+      <li><a href="#dates">Key dates</a></li>
+      <li><a href="#reflect">Reflect first</a></li>
+      <li><a href="#ready">Your checklist</a></li>
+      <li><a href="#options">Other paths in</a></li>
+      <li><a href="#faq">Quick answers</a></li>
+    </ol>
+    <div class="progress" aria-live="polite">
+      <span id="progressText">0 of 7 checklist steps done</span>
+      <div class="bar" aria-hidden="true"><i id="progressBar"></i></div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="what" aria-labelledby="what-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">1</span><h2 id="what-h">What the KPI is</h2></div>
+      <div class="prose">
+        <p>The KPI is a short questionnaire that helps the Kelley Admissions Committee get to know you beyond your transcript. Kelley no longer offers automatic direct admission based on GPA or test scores. Instead, every student who submits the KPI gets a holistic review that considers high school performance, rigor of coursework, academic achievements, and potential for success at Kelley.</p>
+      </div>
+      <div class="facts">
+        <div><b>20</b><span>multiple-choice questions</span></div>
+        <div><b>~20 min</b><span>to complete</span></div>
+        <div><b>IU Portal</b><span>where you take it, after you apply to IU</span></div>
+        <div><b>Required</b><span>for direct admission consideration</span></div>
+      </div>
+      <h3>What Kelley says it learns from your answers</h3>
+      <ul class="areas">
+        <li><h3>Leadership style</h3><p>How you tend to lead, organize, or contribute in a group.</p></li>
+        <li><h3>Business interests</h3><p>What draws you to business and which parts of it.</p></li>
+        <li><h3>Personal aspirations</h3><p>Where you want your education and career to take you.</p></li>
+        <li><h3>Problem-solving</h3><p>How you approach a challenge or a decision.</p></li>
+      </ul>
+      <p class="note" style="margin-top:1.5rem"><strong>Remember:</strong> the KPI complements the rest of your application. Your grades and the rigor of your courses are still central to Kelley’s review.</p>
+    </section>
+
+    <section id="dates" aria-labelledby="dates-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">2</span><h2 id="dates-h">Key dates</h2></div>
+      <p class="prose">You must apply to IU Bloomington first (Common App or Apply IU) and choose a Kelley business major. Then the KPI unlocks in your IU Admissions Portal.</p>
+      <ol class="timeline">
+        <li class="key"><div class="when">Nov 1</div><div class="what"><b>IU Early Action deadline</b><span>Apply to IU and select a Kelley business major.</span></div></li>
+        <li class="key"><div class="when">Nov 15</div><div class="what"><b>Kelley priority KPI deadline</b><span>Submit your KPI by this date to get the earliest decisions.</span></div></li>
+        <li><div class="when">Jan 15</div><div class="what"><b>Early decisions released</b><span>If you met both early deadlines, you’ll hear from IU, and if admitted, get a Kelley decision: admitted, waitlisted, or pre-business.</span></div></li>
+        <li><div class="when">Feb 1</div><div class="what"><b>IU Regular Decision deadline</b><span>Last call for your IU application.</span></div></li>
+        <li class="key"><div class="when">Feb 15</div><div class="what"><b>Kelley regular KPI deadline</b><span>Final date to submit the KPI and still be reviewed for direct admission.</span></div></li>
+        <li><div class="when">Apr 17</div><div class="what"><b>Final Kelley decisions</b><span>Regular-round and waitlist decisions arrive by this date.</span></div></li>
+      </ol>
+      <p class="note"><strong>Earlier is better.</strong> Kelley makes offers on a rolling basis and the direct admit class has limited space, so submitting your KPI by the priority deadline may improve your chances. These dates are as Kelley currently posts them; always confirm in your IU portal.</p>
+    </section>
+
+    <section id="reflect" aria-labelledby="reflect-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">3</span><h2 id="reflect-h">Reflect before you answer</h2></div>
+      <div class="prose">
+        <p>The KPI asks you to pick the response that feels most like you. That’s easier when you’ve already thought about how you actually operate. Spend 10–15 minutes on these prompts using real examples from your life. Nobody at Kelley sees this; it’s just for you.</p>
+      </div>
+
+      <div class="prompt">
+        <span class="tag">Leadership style</span>
+        <label for="p1">Think of a time you led something, with or without a title. What did you actually do?</label>
+        <p class="hint">Did you set the direction, organize people, step in when things stalled, or support the group from behind the scenes?</p>
+        <textarea id="p1" data-key="p1"></textarea>
+        <div class="saved" data-for="p1"></div>
+      </div>
+
+      <div class="prompt">
+        <span class="tag">Business interests</span>
+        <label for="p2">What part of business could you talk about for ten minutes without notes?</label>
+        <p class="hint">Marketing, finance, starting something, how companies make decisions… Where did that interest start?</p>
+        <textarea id="p2" data-key="p2"></textarea>
+        <div class="saved" data-for="p2"></div>
+      </div>
+
+      <div class="prompt">
+        <span class="tag">Personal aspirations</span>
+        <label for="p3">Ten years from now, what kind of problem do you want to be working on?</label>
+        <p class="hint">Don’t worry about a job title. Think about the impact, the people, or the environment you picture.</p>
+        <textarea id="p3" data-key="p3"></textarea>
+        <div class="saved" data-for="p3"></div>
+      </div>
+
+      <div class="prompt">
+        <span class="tag">Problem-solving</span>
+        <label for="p4">Describe a time something went wrong and there wasn’t an obvious fix. What was your first move?</label>
+        <p class="hint">Did you gather information, ask for help, try something quickly, or make a plan? What did you learn about yourself?</p>
+        <textarea id="p4" data-key="p4"></textarea>
+        <div class="saved" data-for="p4"></div>
+      </div>
+
+      <div class="tools">
+        <button type="button" class="btn-primary" id="copyBtn">Copy my notes</button>
+        <button type="button" class="btn-ghost" id="printBtn">Print workbook</button>
+        <button type="button" class="btn-ghost" id="clearBtn">Clear my notes</button>
+        <span class="status" id="toolStatus" role="status"></span>
+      </div>
+
+      <div class="dos">
+        <div>
+          <h3>When you take the KPI</h3>
+          <ul>
+            <li>Choose the answer that describes what you actually do, not what you think sounds impressive.</li>
+            <li>Think of your real examples from above when two choices seem close.</li>
+            <li>Read each question fully before answering.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What to avoid</h3>
+          <ul>
+            <li>Trying to guess the “right” answer. Kelley says there isn’t one.</li>
+            <li>Having a parent or friend answer for you. It should sound like you.</li>
+            <li>Rushing it between classes. Give it a quiet, focused block.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="ready" aria-labelledby="ready-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">4</span><h2 id="ready-h">Your checklist</h2></div>
+      <p class="prose">Check off each step as you go. Your progress saves in this browser.</p>
+      <ul class="checklist" id="checklist">
+        <li><label><input type="checkbox" data-key="c1"><span><b>Choose a Kelley business major on your IU application</b><small>Without it, you won’t be considered for direct admission.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c2"><span><b>Submit your IU Bloomington application</b><small>By Nov 1 for Early Action, or Feb 1 for Regular Decision.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c3"><span><b>Find the IU Admissions Portal email</b><small>Check spam and promotions folders, then log in.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c4"><span><b>Finish the reflection prompts above</b><small>Real examples make the questions easier to answer honestly.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c5"><span><b>Block 20–30 quiet minutes</b><small>Laptop charged, notifications off, one sitting.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c6"><span><b>Complete and submit the KPI</b><small>Priority by Nov 15; final deadline Feb 15.</small></span></label></li>
+        <li><label><input type="checkbox" data-key="c7"><span><b>Tell your HelloCollege advisor you’ve submitted</b><small>So we can help you track decisions and next steps.</small></span></label></li>
+      </ul>
+    </section>
+
+    <section id="options" aria-labelledby="options-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">5</span><h2 id="options-h">Other paths into Kelley</h2></div>
+      <p class="prose">Direct admission isn’t the only way. If you’re admitted to IU but not offered direct admission, you still have options.</p>
+      <div class="paths">
+        <div class="path"><h3>Start as pre-business</h3><p>Begin at IU as a pre-business student and apply to Kelley later through standard admission after meeting its academic requirements.</p></div>
+        <div class="path"><h3>Pursue another IU major</h3><p>Study in your second-choice major and add a Kelley minor or certificate.</p></div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-h">
+      <div class="sec-head"><span class="sec-num" aria-hidden="true">6</span><h2 id="faq-h">Quick answers</h2></div>
+      <details><summary>Who is eligible for direct admission?</summary><p>First-year students starting in a fall semester who choose a Kelley business major and submit the KPI. Summer and spring starts, transfer students, and students who don’t choose a Kelley major aren’t eligible.</p></details>
+      <details><summary>Do recommendation letters count?</summary><p>No. Letters of recommendation or support are not used in the direct admission review.</p></details>
+      <details><summary>Can Kelley be my second-choice major?</summary><p>To be considered for direct admission, you need to be admitted to IU with a Kelley business major. Check with IU Admissions on how first- and second-choice majors are used.</p></details>
+      <details><summary>What if I submit the KPI after November 15?</summary><p>You’ll still be reviewed if you submit by February 15, with a decision by April 17. Space is limited, so earlier is better.</p></details>
+      <details><summary>Who do I contact with questions?</summary><p>Kelley’s undergraduate admissions team at <a href="mailto:bschool@iu.edu">bschool@iu.edu</a>, or your HelloCollege advisor.</p></details>
+    </section>
+  </main>
+</div>
+
+<footer class="wrap">
+  <p>Prepared by HelloCollege. Information is based on Kelley’s posted direct admission guidance; check the <a href="https://kelley.iu.edu/undergraduate/admissions/first-year-students/index.html" target="_blank" rel="noopener">Kelley first-year admissions page</a> for the latest details.</p>
+</footer>
+
+<script>
+(function(){
+  var PREFIX = "hc-kpi:";
+  function get(k){ try { return localStorage.getItem(PREFIX + k); } catch(e){ return null; } }
+  function set(k,v){ try { localStorage.setItem(PREFIX + k, v); return true; } catch(e){ return false; } }
+  function del(k){ try { localStorage.removeItem(PREFIX + k); } catch(e){} }
+
+  // Reflection notes
+  var areas = document.querySelectorAll("textarea[data-key]");
+  areas.forEach(function(t){
+    var v = get(t.dataset.key);
+    if (v) t.value = v;
+    var timer;
+    t.addEventListener("input", function(){
+      clearTimeout(timer);
+      var msg = document.querySelector('.saved[data-for="' + t.dataset.key + '"]');
+      timer = setTimeout(function(){
+        var ok = set(t.dataset.key, t.value);
+        if (msg) msg.textContent = ok ? "Saved in this browser" : "Couldn’t save here. Use Copy my notes to keep them.";
+      }, 400);
+    });
+  });
+
+  // Checklist
+  var boxes = document.querySelectorAll("#checklist input[type=checkbox]");
+  function updateProgress(){
+    var done = 0;
+    boxes.forEach(function(b){ if (b.checked) done++; });
+    document.getElementById("progressText").textContent = done + " of " + boxes.length + " checklist steps done";
+    document.getElementById("progressBar").style.width = (done / boxes.length * 100) + "%";
+  }
+  boxes.forEach(function(b){
+    b.checked = get(b.dataset.key) === "1";
+    b.addEventListener("change", function(){ set(b.dataset.key, b.checked ? "1" : "0"); updateProgress(); });
+  });
+  updateProgress();
+
+  // Tools
+  var status = document.getElementById("toolStatus");
+  document.getElementById("copyBtn").addEventListener("click", function(){
+    var out = "My Kelley KPI reflection notes\n\n";
+    areas.forEach(function(t){
+      var label = document.querySelector('label[for="' + t.id + '"]').textContent;
+      out += label + "\n" + (t.value.trim() || "(not answered yet)") + "\n\n";
+    });
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(out).then(function(){ status.textContent = "Notes copied. Paste them into a doc or email."; },
+        function(){ status.textContent = "Copy didn’t work here. Try Print workbook instead."; });
+    } else {
+      status.textContent = "Copy isn’t available here. Try Print workbook instead.";
+    }
+  });
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+  document.getElementById("clearBtn").addEventListener("click", function(){
+    if (!confirm("Clear all your reflection notes? This can’t be undone.")) return;
+    areas.forEach(function(t){ t.value = ""; del(t.dataset.key); });
+    document.querySelectorAll(".saved").forEach(function(s){ s.textContent = ""; });
+    status.textContent = "Notes cleared.";
+  });
+
+  // Highlight current section in nav
+  var links = document.querySelectorAll(".toc a");
+  if ("IntersectionObserver" in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(l){ l.setAttribute("aria-current", l.getAttribute("href") === "#" + e.target.id ? "true" : "false"); });
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    document.querySelectorAll("main section").forEach(function(s){ obs.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
